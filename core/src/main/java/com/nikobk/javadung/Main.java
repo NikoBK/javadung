@@ -12,10 +12,14 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
     // private Texture image;
-    private BitmapFont font;
+    // private BitmapFont font;
     
     // Player texture
     Texture playerTexture;
+    
+    // Gamesprite (rendering)
+    float spriteSize = 8f; // Texture resolution for assets (8x8)
+    float scale = 8f; // Scale 8x8 textures on the gamesprite
     
     // Player props
     float x = 100;
@@ -43,7 +47,7 @@ public class Main extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.D)) x += 200 * Gdx.graphics.getDeltaTime();
 
         batch.begin();
-        batch.draw(playerTexture, x, y);
+        batch.draw(playerTexture, x, y, spriteSize * scale, spriteSize * scale);
         batch.end();
     }
 
