@@ -41,11 +41,11 @@ public class Main extends ApplicationAdapter {
         camera.setToOrtho(false, 800, 600);
         
         // Initialize map
-        grass = new Texture("grass.png");
-        water = new Texture("water.png");
-        sand = new Texture("sand.png");
+        grass = new Texture("images/tiles/grass.png");
+        water = new Texture("images/tiles/water.png");
+        sand = new Texture("images/tiles/sand.png");
 
-        String[] lines = Gdx.files.internal("map.txt").readString().split("\\n");
+        String[] lines = Gdx.files.internal("maps/placeholder.txt").readString().split("\\n");
         map = new int[lines.length][];
 
         for (int i = 0; i < lines.length; i++) {
@@ -57,7 +57,7 @@ public class Main extends ApplicationAdapter {
         }
         
         // Initialize player
-        playerTexture = new Texture("player.png");
+        playerTexture = new Texture("images/characters/player.png");
     }
 
     @Override
