@@ -38,11 +38,10 @@ public class GameSprite
         if (Gdx.input.isKeyPressed(Input.Keys.A)) playerX -= 200 * Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.D)) playerX += 200 * Gdx.graphics.getDeltaTime();
         
+        // Update before map and view draws to not be 1 frame behind
+        camera.Update();
         
         map.Draw();
         view.draw(playerTexture, playerX, playerY, spriteSize * scale, spriteSize * scale);
-        
-        camera.Update();
-        
 	}
 }
