@@ -18,12 +18,17 @@ public class Main extends ApplicationAdapter {
     Texture playerTexture;
     
     // Gamesprite (rendering)
-    float spriteSize = 8f; // Texture resolution for assets (8x8)
+    float spriteSize = 8f; // Texture resolution for object assets (8x8)
     float scale = 8f; // Scale 8x8 textures on the gamesprite
+    int tileSize = 8; // Texture resolution for tile assets (8x8)
     
     // Player props
     float x = 100;
     float y = 100;
+    
+    // Map
+    int[][] map;
+    Texture grass, water, sand;
 
     @Override
     public void create() {
@@ -31,7 +36,23 @@ public class Main extends ApplicationAdapter {
         // image = new Texture("libgdx.png");
         // font = new BitmapFont();
         
-        // Player init
+        // Initialize map
+        grass = new Texture("grass.png");
+        water = new Texture("water.png");
+        sand = new Texture("sand.png");
+
+        String[] lines = Gdx.files.internal("map.txt").readString().split("\\n");
+        map = new int[lines.length][];
+
+        for (int i = 0; i < lines.length; i++) {
+            String[] nums = lines[i].split(" ");
+            map[i] = new int[nums.length];
+            for (int j = 0; j < nums.length; j++) {
+                map[i][j] = Integer.parseInt(nums[j]);
+            }
+        }
+        
+        // Initialize player
         playerTexture = new Texture("player.png");
     }
 
@@ -45,9 +66,30 @@ public class Main extends ApplicationAdapter {
         if (Gdx.input.isKeyPressed(Input.Keys.S)) y -= 200 * Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.A)) x -= 200 * Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.D)) x += 200 * Gdx.graphics.getDeltaTime();
-
+        
+        // Create the gamesprite
         batch.begin();
+        
+        // Render the in-game map
+        for (int row = 0; row < map.length; row++) {
+            for (int col = 0; col < map[row].length; col++) {
+
+                Texture tex = grass;
+                if (map[row][col] == 1) tex = water;
+                if (map[row][col] == 2) tex = sand;
+
+                batch.draw(tex,
+                    col * tileSize * scale,
+                    row * tileSize * scale,
+                    tileSize * scale,
+                    tileSize * scale
+                );
+            }
+        }
+        
+        // Render player
         batch.draw(playerTexture, x, y, spriteSize * scale, spriteSize * scale);
+        
         batch.end();
     }
 
