@@ -13,9 +13,9 @@ public class Map {
 		
 		this.gs = gs;
 		
-		grass = new Texture("images/tiles/grass.png");
-        water = new Texture("images/tiles/water.png");
-        sand = new Texture("images/tiles/sand.png");
+		grass = AssetHandler.getTextureFromName("grass");
+        water = AssetHandler.getTextureFromName("water");
+        sand = 	AssetHandler.getTextureFromName("sand");
         
         String[] lines = Gdx.files.internal("maps/placeholder.txt").readString().split("\\n");
         map = new int[lines.length][];

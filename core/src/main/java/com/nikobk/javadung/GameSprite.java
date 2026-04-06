@@ -24,9 +24,10 @@ public class GameSprite
 	public GameSprite(SpriteBatch view) {
 		this.view = view;
 		this.camera = new Camera(this, 800, 600);
+		AssetHandler.init();
 		this.map = new Map(this);
 		
-		playerTexture = new Texture("images/characters/player.png");
+		playerTexture = AssetHandler.getTextureFromName("testWizard");
 	}
 	
 	public void draw() {
