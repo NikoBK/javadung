@@ -3,6 +3,7 @@ package com.nikobk.javadung;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,8 +12,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
     private SpriteBatch batch;
-    // private Texture image;
-    // private BitmapFont font;
     
     // Player texture
     Texture playerTexture;
@@ -29,12 +28,17 @@ public class Main extends ApplicationAdapter {
     // Map
     int[][] map;
     Texture grass, water, sand;
+    
+    // Camera
+    OrthographicCamera camera;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        // image = new Texture("libgdx.png");
-        // font = new BitmapFont();
+        
+        // Initialize camera
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, 800, 600);
         
         // Initialize map
         grass = new Texture("grass.png");
@@ -69,6 +73,11 @@ public class Main extends ApplicationAdapter {
         
         // Create the gamesprite
         batch.begin();
+        
+        // Setup the camera
+        camera.position.set(x, y, 0);
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
         
         // Render the in-game map
         for (int row = 0; row < map.length; row++) {
