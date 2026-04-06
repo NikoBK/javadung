@@ -29,7 +29,7 @@ public class Map {
         }
 	}
 	
-	public void Draw() {
+	public void draw() {
 		for (int row = 0; row < map.length; row++) {
             for (int col = 0; col < map[row].length; col++) {
 

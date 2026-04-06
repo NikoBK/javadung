@@ -29,7 +29,7 @@ public class GameSprite
 		playerTexture = new Texture("images/characters/player.png");
 	}
 	
-	public void Draw() {
+	public void draw() {
 		
 		// Player controls
         //TODO: normalize for diagonal vectors
@@ -39,9 +39,9 @@ public class GameSprite
         if (Gdx.input.isKeyPressed(Input.Keys.D)) playerX += 200 * Gdx.graphics.getDeltaTime();
         
         // Update before map and view draws to not be 1 frame behind
-        camera.Update();
+        camera.update();
         
-        map.Draw();
+        map.draw();
         view.draw(playerTexture, playerX, playerY, spriteSize * scale, spriteSize * scale);
 	}
 }

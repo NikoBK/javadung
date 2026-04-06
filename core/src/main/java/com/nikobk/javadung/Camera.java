@@ -13,7 +13,7 @@ public class Camera {
         camera.setToOrtho(false, viewportWidth, viewportHeight);
 	}
 	
-	public void Update() {
+	public void update() {
 		camera.position.set(gs.playerX, gs.playerY, 0);
         camera.update();
         gs.view.setProjectionMatrix(camera.combined);
