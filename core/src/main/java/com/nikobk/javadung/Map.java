@@ -28,18 +28,36 @@ public class Map {
             map[i] = new int[nums.length];
             for (int j = 0; j < nums.length; j++) {
             	String val = nums[j];
-
-            	if (val.equals("R")) {
-            	    map[i][j] = 0; // grass underneath
+            	
+            	switch(val) {
+            	case "R":
+            		System.out.println("rock at " + i + ", " + j+ "!");
+            		map[i][j] = 0; // grass underneath
 
             	    objects.add(new GameObject(
             	        j * gs.tileSize * gs.scale,
             	        i * gs.tileSize * gs.scale,
             	        "rock",
+            	        true,
+            	        false
+            	    ));
+            		break;
+            	case "K":
+            		System.out.println("key at " + i + ", " + j+ "!");
+            		map[i][j] = 0; // grass underneath
+
+            	    objects.add(new GameObject(
+            	        j * gs.tileSize * gs.scale,
+            	        i * gs.tileSize * gs.scale,
+            	        "key",
+            	        false,
             	        true
             	    ));
-            	} else {
-            	    map[i][j] = Integer.parseInt(val);
+            		break;
+            		
+            	default:
+            		map[i][j] = Integer.parseInt(val);
+            		break;
             	}
             }
         }
@@ -63,7 +81,8 @@ public class Map {
         }
 		
 		for (GameObject obj : objects) {
-			float size = gs.tileSize * gs.scale;
+		    if (!obj.enabled) continue;
+		    float size = gs.tileSize * gs.scale;
 		    obj.draw(gs, size, size);
 		}
 	}
@@ -81,6 +100,27 @@ public class Map {
 	        }
 	    }
 	    return false;
+	}
+	
+	public void checkTriggers(float x, float y, float size) {
+	    for (GameObject obj : objects) {
+	        if (!obj.trigger || !obj.enabled) continue;
+
+	        if (x < obj.x + size &&
+	            x + size > obj.x &&
+	            y < obj.y + size &&
+	            y + size > obj.y) {
+
+	            onTrigger(obj);
+	        }
+	    }
+	}
+	
+	private void onTrigger(GameObject obj) {
+	    System.out.println("Triggered: " + obj.name);
+
+	    // Example: key pickup
+	    obj.enabled = false;
 	}
 	
 }

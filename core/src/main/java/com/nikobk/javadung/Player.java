@@ -7,8 +7,8 @@ public class Player extends GameObject {
 	
 	private GameSprite gs;
 
-	public Player(GameSprite gs, float x, float y, String name, boolean collision) {
-		super(x, y, name, collision);
+	public Player(GameSprite gs, float x, float y, String name, boolean collision, boolean trigger) {
+		super(x, y, name, collision, trigger);
 		this.gs = gs;
 	}
 
@@ -28,5 +28,7 @@ public class Player extends GameObject {
         if (!gs.map.isBlocked(x, newY, gs.spriteSize * gs.scale)) {
             y = newY;
         }
+        
+        gs.map.checkTriggers(x, y, gs.spriteSize * gs.scale);
 	}
 }
