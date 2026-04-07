@@ -30,6 +30,8 @@ public class Map {
             	String val = nums[j];
             	
             	switch(val) {
+            	
+            	// rock
             	case "R":
             		System.out.println("rock at " + i + ", " + j+ "!");
             		map[i][j] = 0; // grass underneath
@@ -42,6 +44,8 @@ public class Map {
             	        false
             	    ));
             		break;
+            		
+            	// key
             	case "K":
             		System.out.println("key at " + i + ", " + j+ "!");
             		map[i][j] = 0; // grass underneath
@@ -50,6 +54,45 @@ public class Map {
             	        j * gs.tileSize * gs.scale,
             	        i * gs.tileSize * gs.scale,
             	        "key",
+            	        false,
+            	        true
+            	    ));
+            		break;
+            		
+            	// tree
+            	case "T":
+            		map[i][j] = 0; // grass underneath
+
+            	    objects.add(new GameObject(
+            	        j * gs.tileSize * gs.scale,
+            	        i * gs.tileSize * gs.scale,
+            	        "tree",
+            	        false,
+            	        true
+            	    ));
+            		break;
+            		
+            	// bush
+            	case "B":
+            		map[i][j] = 0; // grass underneath
+
+            	    objects.add(new GameObject(
+            	        j * gs.tileSize * gs.scale,
+            	        i * gs.tileSize * gs.scale,
+            	        "bush",
+            	        false,
+            	        true
+            	    ));
+            		break;
+            		
+            	// wall
+            	case "W":
+            		map[i][j] = 0; // grass underneath
+
+            	    objects.add(new GameObject(
+            	        j * gs.tileSize * gs.scale,
+            	        i * gs.tileSize * gs.scale,
+            	        "wall",
             	        false,
             	        true
             	    ));
@@ -117,7 +160,7 @@ public class Map {
 	}
 	
 	private void onTrigger(GameObject obj) {
-	    System.out.println("Triggered: " + obj.name);
+	    gs.keysFound += 1;
 
 	    // Example: key pickup
 	    obj.enabled = false;

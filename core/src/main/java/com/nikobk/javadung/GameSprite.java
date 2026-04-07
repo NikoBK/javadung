@@ -18,6 +18,9 @@ public class GameSprite
     protected float spriteSize = 8f; // Texture resolution for object assets (8x8)
     protected float scale = 8f; // Scale 8x8 textures on the gamesprite
     protected int tileSize = 8; // Texture resolution for tile assets (8x8)
+    
+    // Gameplay
+    public int keysFound = 0;
 	
 	public GameSprite(SpriteBatch view) {
 		this.view = view;
