@@ -1,5 +1,7 @@
 package com.nikobk.javadung;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -8,6 +10,7 @@ public class Map {
 	private GameSprite gs;
 	int[][] map;
     Texture grass, water, sand;
+    ArrayList<GameObject> objects = new ArrayList<>();
 	
 	public Map(GameSprite gs) {
 		
@@ -24,7 +27,19 @@ public class Map {
             String[] nums = lines[i].split(" ");
             map[i] = new int[nums.length];
             for (int j = 0; j < nums.length; j++) {
-                map[i][j] = Integer.parseInt(nums[j]);
+            	String val = nums[j];
+
+            	if (val.equals("R")) {
+            	    map[i][j] = 0; // grass underneath
+
+            	    objects.add(new GameObject(
+            	        j * gs.tileSize * gs.scale,
+            	        i * gs.tileSize * gs.scale,
+            	        "rock"
+            	    ));
+            	} else {
+            	    map[i][j] = Integer.parseInt(val);
+            	}
             }
         }
 	}
@@ -45,6 +60,11 @@ public class Map {
                 );
             }
         }
+		
+		for (GameObject obj : objects) {
+			float size = gs.tileSize * gs.scale;
+		    obj.draw(gs, size, size);
+		}
 	}
 	
 }
