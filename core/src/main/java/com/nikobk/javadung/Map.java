@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.nikobk.javadung.Main.GameState;
 
 public class Map {
 	
@@ -194,7 +195,7 @@ public class Map {
 	    }
 	    else { // treasure
 	    	System.out.println("Game over!");
-	    	//TODO
+	    	gs.state = GameState.GAMEOVER;
 	    }
 	}
 	

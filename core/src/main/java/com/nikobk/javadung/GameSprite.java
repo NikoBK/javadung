@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.nikobk.javadung.Main.GameState;
 
 public class GameSprite
 {
+	public GameState state = GameState.MENU;
+	
 	protected SpriteBatch view;
 	private Camera camera;
 	protected Map map;
@@ -46,5 +49,16 @@ public class GameSprite
 			System.out.println("all keys collected!");
 			map.door.enabled = false;
 		}
+	}
+	
+	public void reset() {
+	    player.x = 100;
+	    player.y = 100;
+
+	    // reset map + objects
+	    map = new Map(this);
+
+	    // reset any counters (like keys)
+	    this.keysFound = 0;
 	}
 }
