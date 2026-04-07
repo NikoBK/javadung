@@ -40,6 +40,7 @@ public class Main extends ApplicationAdapter {
         	return;
         }
         
+        font.getData().setScale(3f);
         if (Gdx.input.justTouched()) {
             float mx = Gdx.input.getX();
             float my = Gdx.graphics.getHeight() - Gdx.input.getY();
@@ -57,16 +58,16 @@ public class Main extends ApplicationAdapter {
         }
         
         if (gs.state == GameState.MENU) {
-            font.draw(batch, "My Game", 320, 400);
-            font.draw(batch, "[ PLAY ]", 340, 280);
+            font.draw(batch, "Java LibGDX Demo", 130, 400);
+            font.draw(batch, "[ PLAY ]", 260, 280);
 
         } else if (gs.state == GameState.PLAYING) {
             gs.draw();
 
         } else if (gs.state == GameState.GAMEOVER) {
         	resetProjection();
-            font.draw(batch, "GAME OVER", 320, 400);
-            font.draw(batch, "[ MENU ]", 340, 280);
+            font.draw(batch, "GAME OVER", 200, 400);
+            font.draw(batch, "[ MENU ]", 240, 280);
         }
         
         batch.end();
