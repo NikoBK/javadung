@@ -33,11 +33,21 @@ public class GameSprite
 	public void draw() {
 		
 		// Player controls
+		float newX = playerX;
+		float newY = playerY;
+		
         //TODO: normalize for diagonal vectors
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) playerY += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) playerY -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) playerX -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) playerX += 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) newY += 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) newY -= 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) newX -= 200 * Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) newX += 200 * Gdx.graphics.getDeltaTime();
+        
+        if (!map.isBlocked(newX, playerY, spriteSize * scale)) {
+            playerX = newX;
+        }
+        if (!map.isBlocked(playerX, newY, spriteSize * scale)) {
+            playerY = newY;
+        }
         
         // Update before map and view draws to not be 1 frame behind
         camera.update();

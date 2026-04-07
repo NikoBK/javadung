@@ -35,7 +35,8 @@ public class Map {
             	    objects.add(new GameObject(
             	        j * gs.tileSize * gs.scale,
             	        i * gs.tileSize * gs.scale,
-            	        "rock"
+            	        "rock",
+            	        true
             	    ));
             	} else {
             	    map[i][j] = Integer.parseInt(val);
@@ -65,6 +66,21 @@ public class Map {
 			float size = gs.tileSize * gs.scale;
 		    obj.draw(gs, size, size);
 		}
+	}
+	
+	// simple AABB collision check
+	public boolean isBlocked(float x, float y, float size) {
+	    for (GameObject obj : objects) {
+	        if (!obj.collision) continue;
+
+	        if (x < obj.x + size &&
+	            x + size > obj.x &&
+	            y < obj.y + size &&
+	            y + size > obj.y) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 	
 }
