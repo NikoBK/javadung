@@ -161,7 +161,7 @@ public class Map {
 	// simple AABB collision check
 	public boolean isBlocked(float x, float y, float size) {
 	    for (GameObject obj : objects) {
-	        if (!obj.collision) continue;
+	        if (!obj.collision || !obj.enabled) continue;
 
 	        if (x < obj.x + size &&
 	            x + size > obj.x &&
@@ -193,6 +193,7 @@ public class Map {
 		    obj.enabled = false;
 	    }
 	    else { // treasure
+	    	System.out.println("Game over!");
 	    	//TODO
 	    }
 	}
