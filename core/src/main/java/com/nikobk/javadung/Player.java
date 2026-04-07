@@ -22,10 +22,10 @@ public class Player extends GameObject {
         if (Gdx.input.isKeyPressed(Input.Keys.A)) newX -= 200 * Gdx.graphics.getDeltaTime();
         if (Gdx.input.isKeyPressed(Input.Keys.D)) newX += 200 * Gdx.graphics.getDeltaTime();
         
-        if (!gs.map.isBlocked(newX, y, gs.spriteSize * gs.scale)) {
+        if (!gs.map.isBlocked(newX, y, gs.spriteSize * 6)) {
             x = newX;
         }
-        if (!gs.map.isBlocked(x, newY, gs.spriteSize * gs.scale)) {
+        if (!gs.map.isBlocked(x, newY, gs.spriteSize * 6)) {
             y = newY;
         }
         

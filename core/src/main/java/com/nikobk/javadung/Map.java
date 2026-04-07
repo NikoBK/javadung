@@ -11,6 +11,7 @@ public class Map {
 	int[][] map;
     Texture grass, water, sand;
     ArrayList<GameObject> objects = new ArrayList<>();
+    public GameObject door;
 	
 	public Map(GameSprite gs) {
 		
@@ -34,7 +35,7 @@ public class Map {
             	// rock
             	case "R":
             		System.out.println("rock at " + i + ", " + j+ "!");
-            		map[i][j] = 2; // grass underneath
+            		map[i][j] = 2; // sand underneath
 
             	    objects.add(new GameObject(
             	        j * gs.tileSize * gs.scale,
@@ -96,6 +97,33 @@ public class Map {
             	        true,
             	        false
             	    ));
+            		break;
+            		
+        		// treasure
+            	case "G":
+            		map[i][j] = 2; // sand underneath
+
+            	    objects.add(new GameObject(
+            	        j * gs.tileSize * gs.scale,
+            	        i * gs.tileSize * gs.scale,
+            	        "treasure",
+            	        false,
+            	        true
+            	    ));
+            		break;
+            		
+        		// door
+            	case "D":
+            		map[i][j] = 0; // grass underneath
+
+            	    this.door = new GameObject(
+            	        j * gs.tileSize * gs.scale,
+            	        i * gs.tileSize * gs.scale,
+            	        "door",
+            	        true,
+            	        false
+            	    );
+            	    objects.add(this.door);
             		break;
             		
             	default:
@@ -160,10 +188,13 @@ public class Map {
 	}
 	
 	private void onTrigger(GameObject obj) {
-	    gs.keysFound += 1;
-
-	    // Example: key pickup
-	    obj.enabled = false;
+	    if (obj.name == "key") {
+	    	gs.updateKeys();
+		    obj.enabled = false;
+	    }
+	    else { // treasure
+	    	//TODO
+	    }
 	}
 	
 }

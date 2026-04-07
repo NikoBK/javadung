@@ -42,6 +42,8 @@ public class AssetHandler {
 		objTextures.put("tree", new Texture("images/objects/tree.png"));
 		objTextures.put("bush", new Texture("images/objects/bush.png"));
 		objTextures.put("wall", new Texture("images/objects/wall.png"));
+		objTextures.put("treasure", new Texture("images/objects/treasure.png"));
+		objTextures.put("door", new Texture("images/objects/door.png"));
 	}
 	
 	private static void loadTileTextures() {

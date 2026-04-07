@@ -38,4 +38,13 @@ public class GameSprite
         player.draw(this, spriteSize * scale, spriteSize * scale);
         
 	}
+	
+	public void updateKeys() {
+		keysFound += 1;
+		
+		if (keysFound == 4) {
+			System.out.println("all keys collected!");
+			map.door.enabled = false;
+		}
+	}
 }
