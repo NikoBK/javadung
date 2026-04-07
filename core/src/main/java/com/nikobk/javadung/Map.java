@@ -34,7 +34,7 @@ public class Map {
             	// rock
             	case "R":
             		System.out.println("rock at " + i + ", " + j+ "!");
-            		map[i][j] = 0; // grass underneath
+            		map[i][j] = 2; // grass underneath
 
             	    objects.add(new GameObject(
             	        j * gs.tileSize * gs.scale,
@@ -67,8 +67,8 @@ public class Map {
             	        j * gs.tileSize * gs.scale,
             	        i * gs.tileSize * gs.scale,
             	        "tree",
-            	        false,
-            	        true
+            	        true,
+            	        false
             	    ));
             		break;
             		
@@ -80,8 +80,8 @@ public class Map {
             	        j * gs.tileSize * gs.scale,
             	        i * gs.tileSize * gs.scale,
             	        "bush",
-            	        false,
-            	        true
+            	        true,
+            	        false
             	    ));
             		break;
             		
@@ -93,8 +93,8 @@ public class Map {
             	        j * gs.tileSize * gs.scale,
             	        i * gs.tileSize * gs.scale,
             	        "wall",
-            	        false,
-            	        true
+            	        true,
+            	        false
             	    ));
             		break;
             		
