@@ -14,7 +14,7 @@ public class Camera {
 	}
 	
 	public void update() {
-		camera.position.set(gs.playerX, gs.playerY, 0);
+		camera.position.set(gs.player.x, gs.player.y, 0);
         camera.update();
         gs.view.setProjectionMatrix(camera.combined);
 	}

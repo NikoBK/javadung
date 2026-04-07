@@ -9,12 +9,10 @@ public class GameSprite
 {
 	protected SpriteBatch view;
 	private Camera camera;
-	private Map map;
+	protected Map map;
 	
     // Test player
-	private Texture playerTexture;
-    float playerX = 100;
-    float playerY = 100;
+	protected Player player;
     
     // View
     protected float spriteSize = 8f; // Texture resolution for object assets (8x8)
@@ -25,34 +23,16 @@ public class GameSprite
 		this.view = view;
 		this.camera = new Camera(this, 800, 600);
 		AssetHandler.init();
-		this.map = new Map(this);
-		
-		playerTexture = AssetHandler.getTextureFromName("testWizard");
+		this.map = new Map(this);	
+		this.player = new Player(this, 100, 100, "testWizard", false);
 	}
 	
 	public void draw() {
 		
-		// Player controls
-		float newX = playerX;
-		float newY = playerY;
-		
-        //TODO: normalize for diagonal vectors
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) newY += 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) newY -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) newX -= 200 * Gdx.graphics.getDeltaTime();
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) newX += 200 * Gdx.graphics.getDeltaTime();
-        
-        if (!map.isBlocked(newX, playerY, spriteSize * scale)) {
-            playerX = newX;
-        }
-        if (!map.isBlocked(playerX, newY, spriteSize * scale)) {
-            playerY = newY;
-        }
-        
-        // Update before map and view draws to not be 1 frame behind
-        camera.update();
-        
+		player.update();          
+        camera.update(); // Update before map and view draws to not be 1 frame behind  
         map.draw();
-        view.draw(playerTexture, playerX, playerY, spriteSize * scale, spriteSize * scale);
+        player.draw(this, spriteSize * scale, spriteSize * scale);
+        
 	}
 }
