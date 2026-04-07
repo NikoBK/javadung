@@ -30,7 +30,7 @@ public class GameSprite
 		this.camera = new Camera(this, 800, 600);
 		AssetHandler.init();
 		this.map = new Map(this);	
-		this.player = new Player(this, 100, 100, "testWizard", false, false);
+		this.player = new Player(this, 1400, 600, "testWizard", false, false);
 	}
 	
 	public void draw() {

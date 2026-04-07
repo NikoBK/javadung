@@ -32,6 +32,7 @@ public class AssetHandler {
 		tileTextures.put("grass", new Texture("images/tiles/grass.png"));
 		tileTextures.put("sand", new Texture("images/tiles/sand.png"));
 		tileTextures.put("water", new Texture("images/tiles/water.png"));
+		tileTextures.put("deepwater", new Texture("images/tiles/deepwater.png"));
 		
 		// characters
 		charTextures.put("testWizard", new Texture("images/characters/testWizard.png"));

@@ -10,7 +10,7 @@ public class Map {
 	
 	private GameSprite gs;
 	int[][] map;
-    Texture grass, water, sand;
+    Texture grass, water, sand, dWater;
     ArrayList<GameObject> objects = new ArrayList<>();
     public GameObject door;
 	
@@ -21,6 +21,7 @@ public class Map {
 		grass = AssetHandler.getTextureFromName("grass");
         water = AssetHandler.getTextureFromName("water");
         sand = 	AssetHandler.getTextureFromName("sand");
+        dWater = AssetHandler.getTextureFromName("deepwater");
         
         String[] lines = Gdx.files.internal("maps/placeholder.txt").readString().split("\\n");
         map = new int[lines.length][];
@@ -142,6 +143,7 @@ public class Map {
                 Texture tex = grass;
                 if (map[row][col] == 1) tex = water;
                 if (map[row][col] == 2) tex = sand;
+                if (map[row][col] == 3) tex = dWater;
 
                 gs.view.draw(tex,
                     col * gs.tileSize * gs.scale,
